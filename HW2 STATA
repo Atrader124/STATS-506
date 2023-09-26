@@ -1,0 +1,27 @@
+cd C:\Users\user\Desktop
+clear all
+import delimited "cars.csv", encoding(UTF-8)
+rename dimensionsheight height
+rename dimensionslength length
+rename dimensionswidth width
+rename engineinformationdriveline driveline
+rename engineinformationenginetype enginetype
+rename engineinformationhybrid hybrid
+rename engineinformationnumberofforward numberofforward
+rename engineinformationtransmission transmission
+rename fuelinformationcitympg citympg
+rename fuelinformationfueltype fueltype
+rename fuelinformationhighwaympg highwaympg
+rename identificationclassification classification
+rename identificationid id
+rename identificationmake make
+rename identificationmodelyear modelyear
+rename identificationyear year
+rename engineinformationenginestatistic horsepower
+rename v18 torque
+keep if fueltype == "Gasoline"
+regress highwaympg horsepower torque height length width i.year
+regress highwaympg c.horsepower##c.torque c.length c.width c.height i.year
+summarize(horsepower)
+summarize(torque)
+marginsplot, at(torque = (100 200 300)) horsepower(50 (10) 200)
