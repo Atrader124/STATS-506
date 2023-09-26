@@ -1,0 +1,224 @@
+---
+title: "HW2"
+author: "Yuanjie Xu"
+format:
+  html:
+  embed-resources: true
+code-overflow: wrap
+editor: visual
+---
+
+## Problem 1 - Dice Game
+
+a.  Version 1: Implement this game using a loop over the die rolls.
+
+```{r}
+dice_v1 <- function(x) {
+  result <- -2 * x # the cost
+  for(i in 1:x) {
+    dice <- sample(1:6, 1)
+    if(dice %% 2 == 0) { 
+      # check if this roll wins
+      result <- result + dice 
+      # if wins, win the amount on the roll
+    }
+  }
+  return(result)
+}
+```
+
+Version 2: Implement this game using built-in R vectorized functions.
+
+```{r}
+dice_v2 <- function(x) {
+  dice <- sample(1:6, x, replace = TRUE)
+  win <- dice[dice %% 2 == 0]
+  # the total amount wins
+  result <- sum(win) - 2 * x
+  return(result)
+}
+```
+
+Version 3: Implement this by collapsing the die rolls into a single table().
+
+```{r}
+dice_v3 <- function(x) {
+  dice <- sample(1:6, x, replace = TRUE)
+  stats <- table(dice)
+  win <- sum((as.numeric(names(stats)) %% 2 == 0) * as.numeric(names(stats)) * as.integer(stats))
+  # the total amount wins
+  result = win - 2 * x
+  return(result)
+}
+```
+
+Version 4: Implement this game by using one of the "apply" functions.
+
+```{r}
+dice_v4 <- function(x) {
+  dice <- sample(1:6, x, replace = TRUE)
+  win <- sapply(dice, function(y) if(y %% 2 == 0) return(y) else return(0))
+  result <- sum(win) - 2 * x
+  return(result)
+}
+```
+
+b.  Demonstrate that all versions work. Do so by running each a few times, once with an input a 3, and once with an input of 3000.
+
+```{r}
+cat("Version 1 with input 3:", dice_v1(3), "\n")
+cat("Version 1 with input 3000:", dice_v1(3000), "\n")
+cat("Version 2 with input 3:", dice_v2(3), "\n")
+cat("Version 2 with input 3000:", dice_v2(3000), "\n")
+cat("Version 3 with input 3:", dice_v1(3), "\n")
+cat("Version 3 with input 3000:", dice_v1(3000), "\n")
+cat("Version 4 with input 3:", dice_v1(3), "\n")
+cat("Version 4 with input 3000:", dice_v1(3000), "\n")
+```
+
+c.  Demonstrate that the four versions give the same result. Test with inputs 3 and 3000. (You may need to add a way to control the randomization.)
+
+```{r}
+set.seed(123)
+cat("Version 1 with input 3:", dice_v1(3), "\n")
+set.seed(123)
+cat("Version 1 with input 3000:", dice_v1(3000), "\n")
+set.seed(123)
+cat("Version 2 with input 3:", dice_v2(3), "\n")
+set.seed(123)
+cat("Version 2 with input 3000:", dice_v2(3000), "\n")
+set.seed(123)
+cat("Version 3 with input 3:", dice_v3(3), "\n")
+set.seed(123)
+cat("Version 3 with input 3000:", dice_v3(3000), "\n")
+set.seed(123)
+cat("Version 4 with input 3:", dice_v4(3), "\n")
+set.seed(123)
+cat("Version 4 with input 3000:", dice_v4(3000), "\n\n")
+```
+
+d.  Use the microbenchmark package to clearly demonstrate the speed of the implementations. Compare performance with a low input (100) and a large input (10000). Discuss the results
+
+```{r}
+library(microbenchmark)
+set.seed(123)
+speed_100 <- microbenchmark(
+  v1 = dice_v1(100),
+  v2 = dice_v2(100),
+  v3 = dice_v3(100),
+  v4 = dice_v4(100),
+  times = 100
+)
+# demonstrate speed when input = 100
+set.seed(123)
+speed_10000 <- microbenchmark(
+  v1 = dice_v1(10000),
+  v2 = dice_v2(10000),
+  v3 = dice_v3(10000),
+  v4 = dice_v4(10000),
+  times = 100
+)
+# demonstrate speed when input = 10000
+```
+
+```{r}
+print(speed_100)
+```
+
+```{r}
+print(speed_10000)
+```
+
+The microbenchmark function from the microbenchmark package can calculate the code run time. So we can compare the speed between different R codes. This function enables us to find the fastest method to achieve functionality.
+
+For a low input (100):
+
+Version 2, using built-in R vectorized functions, is the fastest and stable method. This result may result from that the built-in R vectorized functions are easy to call and improve the performance. Version 1, using a loop, is the worst. It looks like a loop is not an effective method in this problem. Version 3 and version 4 have similar performance, with similar minimum, lq, mean and median. However, Version 3 has a much larger maximum than version 4, which may mean that version 4 is more stable than version 3. I believe version 3's larger range may caused by the difference of how many times we win in each try.
+
+For a large input (10000):
+
+Version 2, using built-in R vectorized functions, is still the fastest and stable method. Version 1, using a loop, is still the worst. The reason is explained above. Version 3 is the second fast and much faster and stabler than version 4. When it comes to large input, version 4 has a worse performance. The table function shows its advantage with a significantly better performance than the apply function.
+
+e.  Do you think this is a fair game? Defend your decision with evidence based upon a Monte Carlo simulation.
+
+I do not think this is a fair game. Let's assume that the input follows a discrete uniform distribution. So we assume that each simulation has the same input of 100. We choose version 2 to simulate because of its fastest speed. We repeat it X times, and calculate the mean of the results. If it is a fair game, the mean of the results should be close to zero. If the mean we finally get is between -1e-6 to 1e-6, we consider it is a fair game.
+
+```{r}
+M_C_simulation <- function(X) {
+  results <- numeric(X)
+  for(i in 1:X) {
+    results[X] <- dice_v2(1000)
+    # put X results in results
+  }
+  final_mean <- mean(results)
+  return(final_mean)
+}
+
+X <- 10000
+final_mean <- M_C_simulation(X)
+print(final_mean)
+if (abs(final_mean) <= 1e-6) {
+  # find out whether final_mean is close enough to zero
+  print("It is a fair game.")
+} else {
+  print("It is not a fair game.")
+}
+```
+
+## Problem 2 - Linear Regression
+
+a.  The names of the variables in this data are way too long. Rename the columns of the data to more reasonable lengths.
+
+```{r}
+df <- read.csv("C:/Users/user/Desktop/cars.csv",header = TRUE)
+names(df) <- c("Height","Length","Width","Driveline","EngineType","Hybrid","ForwardGears","Transmission","Citympg","FuelType","Highwaympg","Classification","ID","Make","ModelYear","Year","Horsepower","Torque")
+```
+
+b.  Restrict the data to cars whose Fuel Type is "Gasoline".
+
+```{r}
+df_gasoline <- subset(df, FuelType == "Gasoline")
+```
+
+c.  Fit a linear regression model predicting MPG on the highway.
+
+```{r}
+model <- lm(Highwaympg ~ Horsepower + Torque + Length + Width + Height +  as.factor(Year), data=df_gasoline)
+summary(model)
+```
+
+The coefficient for Horsepower is 0.01635. The coefficient for Horsepower represents if one unit Horsepower increases, how many units will be changed in Highway MPG on average, holding all other control variables constant. So if Horsepower increases 1 unit, Highway.MPG will increase 0.01635 units on average, holding all other control variables constant. According to the t-test, this effect is statistically significant.
+
+d.  It seems reasonable that there may be an interaction between horsepower and torque. Refit the model (with lm) and generate an interaction plot, showing how the relationship between horsepower and MPG changes as torque changes. Choose reasonable values of horsepower, and show lines for three different reasonable values of torque.
+
+```{r}
+model_interaction <- lm(Highwaympg ~  Horsepower*Torque + Length + Width + Height + as.factor(Year), data=df_gasoline)
+summary(model_interaction)
+```
+
+```{r}
+print("Horsepower")
+summary(df_gasoline$Horsepower)
+print("Torque")
+summary(df_gasoline$Torque)
+```
+
+```{r}
+library(interactions)
+interact_plot(model_interaction, pred = Horsepower, modx = Torque, interval = TRUE, at = list(Year = 2011), data = df_gasoline)
+```
+
+e.  Calculate beta from d. manually (without using lm) by first creating a proper design matrix, then using matrix algebra to estimate beta. Confirm that you get the same result as lm did prior.
+
+```{r}
+X <- model.matrix(~ Horsepower*Torque + Length + Width + Height + as.factor(Year), data=df_gasoline)
+y <- df_gasoline$Highwaympg
+beta_direct <- solve(t(X) %*% X) %*% t(X) %*% y
+# manually calculate beta
+beta_lm <- coef(model_interaction)
+# use lm to calculate beta
+print("beta_direct")
+print(beta_direct)
+print("beta_lm")
+print(beta_lm)
+```
