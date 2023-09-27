@@ -24,4 +24,4 @@ regress highwaympg horsepower torque height length width i.year
 regress highwaympg c.horsepower##c.torque c.length c.width c.height i.year
 summarize(horsepower)
 summarize(torque)
-marginsplot, at(torque = (100 200 300)) horsepower(50 (10) 200)
+interactplot, reverse
