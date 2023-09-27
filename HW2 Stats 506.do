@@ -138,5 +138,10 @@ c.horsepower#c.torque |   .0001124   4.63e-06    24.28   0.000     .0001033    .
 -------------+---------------------------------------------------------
       torque |      4,591    267.2196    101.3269         98        774
 
-. 
+. interactplot, reverse
+invalid line in style file anglestyle-ninety:
+*label "90 degrees"
+invalid line in style file anglestyle-ninety:
+*label "90 degrees"
+
 ```
