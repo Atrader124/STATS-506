@@ -61,7 +61,6 @@ proc reg data=positive_costs;
 model log_DOLLAREL = TOTROOMS PRKGPLC1; /* response and predictors */
 weight NWEIGHT; /* weights */
 title "Linear Regression on Log of Total Electricity Cost";
-10
 output out=predicted_data p=predicted_log; /* get predicted data for (e) */
 run;
 
