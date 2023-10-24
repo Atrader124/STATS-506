@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Yuanjie Xu">
+
+<title>Problem Set 4</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="PS 4 Stats 506_files/libs/clipboard/clipboard.min.js"></script>
+<script src="PS 4 Stats 506_files/libs/quarto-html/quarto.js"></script>
+<script src="PS 4 Stats 506_files/libs/quarto-html/popper.min.js"></script>
+<script src="PS 4 Stats 506_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="PS 4 Stats 506_files/libs/quarto-html/anchor.min.js"></script>
+<link href="PS 4 Stats 506_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="PS 4 Stats 506_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="PS 4 Stats 506_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="PS 4 Stats 506_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="PS 4 Stats 506_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Problem Set 4</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Yuanjie Xu </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>link to my GitHub repository: https://github.com/Atrader124/STATS-506</p>
+<section id="problem-1---tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1---tidyverse">Problem 1 - Tidyverse</h2>
+<ol type="a">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.3     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>departure_delay_table <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_departure_delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">median_departure_delay =</span> <span class="fu">median</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(airports, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"origin"</span> <span class="ot">=</span> <span class="st">"faa"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, mean_departure_delay, median_departure_delay) <span class="sc">%&gt;%</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># order in descending mean delay</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_departure_delay)) </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>departure_delay_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  name                mean_departure_delay median_departure_delay
+  &lt;chr&gt;                              &lt;dbl&gt;                  &lt;dbl&gt;
+1 Newark Liberty Intl                 15.1                     -1
+2 John F Kennedy Intl                 12.1                     -1
+3 La Guardia                          10.3                     -3</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>arrival_delay_table <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dest) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_arrival_delay =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">median_arrival_delay =</span> <span class="fu">median</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">total_flights =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_flights <span class="sc">&gt;=</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(airports, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"dest"</span> <span class="ot">=</span> <span class="st">"faa"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, mean_arrival_delay, median_arrival_delay) <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(name)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># order in descending mean delay</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_arrival_delay)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>( <span class="at">n =</span> <span class="cn">Inf</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 98 × 3
+   name                                  mean_arrival_delay median_arrival_delay
+   &lt;chr&gt;                                              &lt;dbl&gt;                &lt;dbl&gt;
+ 1 "Columbia Metropolitan"                          41.8                    28  
+ 2 "Tulsa Intl"                                     33.7                    14  
+ 3 "Will Rogers World"                              30.6                    16  
+ 4 "Jackson Hole Airport"                           28.1                    15  
+ 5 "Mc Ghee Tyson"                                  24.1                     2  
+ 6 "Dane Co Rgnl Truax Fld"                         20.2                     1  
+ 7 "Richmond Intl"                                  20.1                     1  
+ 8 "Akron Canton Regional Airport"                  19.7                     3  
+ 9 "Des Moines Intl"                                19.0                     0  
+10 "Gerald R Ford Intl"                             18.2                     1  
+11 "Birmingham Intl"                                16.9                    -2  
+12 "Theodore Francis Green State"                   16.2                     1  
+13 "Greenville-Spartanburg Internationa…            15.9                    -0.5
+14 "Cincinnati Northern Kentucky Intl"              15.4                    -3  
+15 "Savannah Hilton Head Intl"                      15.1                    -1  
+16 "Manchester Regional Airport"                    14.8                    -3  
+17 "Eppley Afld"                                    14.7                    -2  
+18 "Yeager"                                         14.7                    -1.5
+19 "Kansas City Intl"                               14.5                     0  
+20 "Albany Intl"                                    14.4                    -4  
+21 "General Mitchell Intl"                          14.2                     0  
+22 "Piedmont Triad"                                 14.1                    -2  
+23 "Washington Dulles Intl"                         13.9                    -3  
+24 "Cherry Capital Airport"                         13.0                   -10  
+25 "James M Cox Dayton Intl"                        12.7                    -3  
+26 "Louisville International Airport"               12.7                    -2  
+27 "Chicago Midway Intl"                            12.4                    -1  
+28 "Sacramento Intl"                                12.1                     4  
+29 "Jacksonville Intl"                              11.8                    -2  
+30 "Nashville Intl"                                 11.8                    -2  
+31 "Portland Intl Jetport"                          11.7                    -4  
+32 "Greater Rochester Intl"                         11.6                    -5  
+33 "Hartsfield Jackson Atlanta Intl"                11.3                    -1  
+34 "Lambert St Louis Intl"                          11.1                    -3  
+35 "Norfolk Intl"                                   10.9                    -4  
+36 "Baltimore Washington Intl"                      10.7                    -5  
+37 "Memphis Intl"                                   10.6                    -2.5
+38 "Port Columbus Intl"                             10.6                    -3  
+39 "Charleston Afb Intl"                            10.6                    -4  
+40 "Philadelphia Intl"                              10.1                    -3  
+41 "Raleigh Durham Intl"                            10.1                    -3  
+42 "Indianapolis Intl"                               9.94                   -3  
+43 "Charlottesville-Albemarle"                       9.5                    -5  
+44 "Cleveland Hopkins Intl"                          9.18                   -5  
+45 "Ronald Reagan Washington Natl"                   9.07                   -2  
+46 "Burlington Intl"                                 8.95                   -4  
+47 "Buffalo Niagara Intl"                            8.95                   -5  
+48 "Syracuse Hancock Intl"                           8.90                   -5  
+49 "Denver Intl"                                     8.61                   -2  
+50 "Palm Beach Intl"                                 8.56                   -3  
+51 "Bob Hope"                                        8.18                   -3  
+52 "Fort Lauderdale Hollywood Intl"                  8.08                   -3  
+53 "Bangor Intl"                                     8.03                   -9  
+54 "Asheville Regional Airport"                      8.00                   -1  
+55 "Pittsburgh Intl"                                 7.68                   -5  
+56 "Gallatin Field"                                  7.6                    -2  
+57 "NW Arkansas Regional"                            7.47                   -2  
+58 "Tampa Intl"                                      7.41                   -4  
+59 "Charlotte Douglas Intl"                          7.36                   -3  
+60 "Minneapolis St Paul Intl"                        7.27                   -5  
+61 "William P Hobby"                                 7.18                   -4  
+62 "Bradley Intl"                                    7.05                  -10  
+63 "San Antonio Intl"                                6.95                   -9  
+64 "South Bend Rgnl"                                 6.5                    -3.5
+65 "Louis Armstrong New Orleans Intl"                6.49                   -6  
+66 "Key West Intl"                                   6.35                    7  
+67 "Eagle Co Rgnl"                                   6.30                   -4  
+68 "Austin Bergstrom Intl"                           6.02                   -5  
+69 "Chicago Ohare Intl"                              5.88                   -8  
+70 "Orlando Intl"                                    5.45                   -5  
+71 "Detroit Metro Wayne Co"                          5.43                   -7  
+72 "Portland Intl"                                   5.14                   -5  
+73 "Nantucket Mem"                                   4.85                   -3  
+74 "Wilmington Intl"                                 4.64                   -7  
+75 "Myrtle Beach Intl"                               4.60                  -13  
+76 "Albuquerque International Sunport"               4.38                   -5.5
+77 "George Bush Intercontinental"                    4.24                   -5  
+78 "Norman Y Mineta San Jose Intl"                   3.45                   -7  
+79 "Southwest Florida Intl"                          3.24                   -5  
+80 "San Diego Intl"                                  3.14                   -5  
+81 "Sarasota Bradenton Intl"                         3.08                   -5  
+82 "Metropolitan Oakland Intl"                       3.08                   -9  
+83 "General Edward Lawrence Logan Intl"              2.91                   -9  
+84 "San Francisco Intl"                              2.67                   -8  
+85 "Yampa Valley"                                    2.14                    2  
+86 "Phoenix Sky Harbor Intl"                         2.10                   -6  
+87 "Montrose Regional Airport"                       1.79                  -10.5
+88 "Los Angeles Intl"                                0.547                  -7  
+89 "Dallas Fort Worth Intl"                          0.322                  -9  
+90 "Miami Intl"                                      0.299                  -9  
+91 "Mc Carran Intl"                                  0.258                  -8  
+92 "Salt Lake City Intl"                             0.176                  -8  
+93 "Long Beach"                                     -0.0620                -10  
+94 "Martha\\\\'s Vineyard"                          -0.286                 -11  
+95 "Seattle Tacoma Intl"                            -1.10                  -11  
+96 "Honolulu Intl"                                  -1.37                   -7  
+97 "John Wayne Arpt Orange Co"                      -7.87                  -11  
+98 "Palm Springs Intl"                             -12.7                   -13.5</code></pre>
+</div>
+</div>
+<ol start="2" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>average_speed_table <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">speed_mph =</span> distance<span class="sc">/</span>(air_time<span class="sc">/</span><span class="dv">60</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(planes, <span class="at">by =</span> <span class="st">"tailnum"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(model) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">average_speed_mph =</span> <span class="fu">mean</span>(speed_mph, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_flights =</span> <span class="fu">n</span>()</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># order in descending mean delay</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(average_speed_mph)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(average_speed_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  model   average_speed_mph total_flights
+  &lt;chr&gt;               &lt;dbl&gt;         &lt;int&gt;
+1 777-222              483.             4</code></pre>
+</div>
+</div>
+</section>
+<section id="problem2---get_temp" class="level2">
+<h2 class="anchored" data-anchor-id="problem2---get_temp">problem2 - get_temp()</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nnmaps <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C:/Users/user/Downloads/chicago-nmmaps.csv"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>nnmaps<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(nnmaps<span class="sc">$</span>date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>get_temp <span class="ot">&lt;-</span> <span class="cf">function</span>(month, year, data, <span class="at">celsius =</span> <span class="cn">FALSE</span>, <span class="at">average_fn =</span> mean) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  input_m <span class="ot">&lt;-</span> month</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  input_y <span class="ot">&lt;-</span> year</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.numeric</span>(month)) {</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(month <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">||</span> month <span class="sc">&gt;</span> <span class="dv">12</span>){</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(<span class="st">"Invalid month. Please provide a valid month (numeric 1-12 or a string)."</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    month <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(month)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">is.character</span>(month)) {</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    input_m <span class="ot">&lt;-</span> <span class="fu">case_when</span>(</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"January"</span>) <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Feb"</span>, <span class="st">"February"</span>) <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Mar"</span>, <span class="st">"March"</span>) <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Apr"</span>, <span class="st">"April"</span>) <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"May"</span>) <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jun"</span>, <span class="st">"June"</span>) <span class="sc">~</span> <span class="dv">6</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jul"</span>, <span class="st">"July"</span>) <span class="sc">~</span> <span class="dv">7</span>,</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Aug"</span>, <span class="st">"August"</span>) <span class="sc">~</span> <span class="dv">8</span>,</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Sep"</span>, <span class="st">"September"</span>) <span class="sc">~</span> <span class="dv">9</span>,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Oct"</span>, <span class="st">"October"</span>) <span class="sc">~</span> <span class="dv">10</span>,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Nov"</span>, <span class="st">"November"</span>) <span class="sc">~</span> <span class="dv">11</span>,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    input_m <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Dec"</span>, <span class="st">"December"</span>) <span class="sc">~</span> <span class="dv">12</span>,</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="sc">-</span><span class="dv">1</span> <span class="co"># Default case</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  filtered_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(month_numeric <span class="sc">==</span> input_m, year <span class="sc">==</span> input_y)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">nrow</span>(filtered_data) <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">"No data available for the specified month and year."</span>)</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>()</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  mean_temperature <span class="ot">&lt;-</span> filtered_data <span class="sc">%&gt;%</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="at">temperature =</span> <span class="fu">average_fn</span>(temp)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(temperature)</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (celsius) {</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    mean_temperature <span class="ot">&lt;-</span> (mean_temperature <span class="sc">-</span> <span class="dv">32</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">9</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mean_temperature)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="st">"Apr"</span>, <span class="dv">1999</span>, <span class="at">data =</span> nnmaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 49.8</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="st">"Apr"</span>, <span class="dv">1999</span>, <span class="at">data =</span> nnmaps, <span class="at">celsius =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9.888889</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="dv">10</span>, <span class="dv">1998</span>, <span class="at">data =</span> nnmaps, <span class="at">average_fn =</span> median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 55</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="dv">13</span>, <span class="dv">1998</span>, <span class="at">data =</span> nnmaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Invalid month. Please provide a valid month (numeric 1-12 or a string)."</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="dv">2</span>, <span class="dv">2005</span>, <span class="at">data =</span> nnmaps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "No data available for the specified month and year."</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_temp</span>(<span class="st">"November"</span>, <span class="dv">1999</span>, <span class="at">data =</span>nnmaps, <span class="at">celsius =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">average_fn =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>           x <span class="sc">%&gt;%</span> sort <span class="ot">-&gt;</span> x</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>           x[<span class="dv">2</span><span class="sc">:</span>(<span class="fu">length</span>(x) <span class="sc">-</span> <span class="dv">1</span>)] <span class="sc">%&gt;%</span> mean <span class="sc">%&gt;%</span> return</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>         })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.301587</code></pre>
+</div>
+</div>
+</section>
+<section id="problem3---sas" class="level2">
+<h2 class="anchored" data-anchor-id="problem3---sas">problem3 - SAS</h2>
+<p>link to SAS code: https://github.com/Atrader124/STATS-506/blob/main/PS%204%20Stats%20506.sas</p>
+<div class="cell">
+<pre class="sas cell-code"><code>PROC IMPORT DATAFILE='/home/u63653190/recs2020_public_v5.csv'
+OUT=recs2020
+DBMS=CSV;
+RUN;
+proc print data=recs2020 (obs=5);
+run;
+proc contents data=recs2020;
+run;</code></pre>
+</div>
+<ol type="a">
+<li></li>
+</ol>
+<div class="cell">
+<pre class="sas cell-code"><code>/* (a) */
+proc sql noprint;
+/* weight of each state */
+create table state_weights as
+select state_name, sum(NWEIGHT) as total_weight
+from recs2020
+group by state_name;
+/* sum of weights of all states */
+select sum(NWEIGHT) into :totalWeight from recs2020;
+/* percentage of each state and sort */
+create table state_percent as
+select state_name,
+total_weight / &amp;totalWeight as percentage
+from state_weights
+order by percentage desc;
+run;
+/* print the state with the highest percentage */
+proc print data=state_percent(obs=1);
+run;
+/* print the percentage of Michigan */
+proc print data=state_percent;
+where state_name = "Michigan";
+run;</code></pre>
+</div>
+<ol start="2" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<pre class="sas cell-code"><code>/* (b) */
+/* get records with strictly positive value of total electricity cost */
+data positive_costs;
+set recs2020;
+if DOLLAREL &gt; 0;
+run;
+/* plot the histogram */
+proc sgplot data=positive_costs;
+histogram DOLLAREL;
+title "Histogram of Total Electricity Cost with Strictly Positive Values";
+run;</code></pre>
+</div>
+<ol start="3" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<pre class="sas cell-code"><code>/* (c) */
+/* calculate the log of total elevtricity cost */
+data positive_costs;
+set positive_costs;
+log_DOLLAREL = log(DOLLAREL);
+run;
+/* plot the histogram */
+proc sgplot data=positive_costs;
+histogram log_DOLLAREL;
+title "Histogram of Log of Total Electricity Cost";
+run;</code></pre>
+</div>
+<ol start="4" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<pre class="sas cell-code"><code>/* (d) */
+/* linear regression */
+proc reg data=positive_costs;
+model log_DOLLAREL = TOTROOMS PRKGPLC1; /* response and predictors */
+weight NWEIGHT; /* weights */
+title "Linear Regression on Log of Total Electricity Cost";
+output out=predicted_data p=predicted_log; /* get predicted data for (e) */
+run;</code></pre>
+</div>
+<ol start="5" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<pre class="sas cell-code"><code>/* (e) */
+data predicted_data;
+set predicted_data;
+predicted_DOLLAREL = exp(predicted_log);
+run;
+proc sgplot data=predicted_data;
+scatter x=DOLLAREL y=predicted_DOLLAREL;
+xaxis label="Actual Total Electricity Cost";
+yaxis label="Predicted Total Electricity Cost";
+title "Scatterplot of Predicted vs Actual Total Electricity Cost";
+run;</code></pre>
+</div>
+</section>
+<section id="problem-4---multiple-tools" class="level2">
+<h2 class="anchored" data-anchor-id="problem-4---multiple-tools">Problem 4 - Multiple tools</h2>
+<p>link to the SAS code: https://github.com/Atrader124/STATS-506/blob/main/PS%204%20Stats%20506%20Problem%204.sas</p>
+<ol type="a">
+<li></li>
+<li></li>
+</ol>
+<div class="cell">
+<pre class="sas cell-code"><code>/* (b) */
+/* import csv file */
+PROC IMPORT DATAFILE='/home/u63653190/public2022.csv'
+OUT=fulldata
+DBMS=CSV;
+RUN;
+/* get some information about the data */
+proc print data=fulldata (obs=5);
+run;
+/* select needed variables */
+proc sql;
+create table subsetData as
+select CaseID, weight_pop, B3, ND2, B7_b, GH1, race_5cat, educ_4cat
+from fullData;
+run;
+/* transformation */
+proc format;
+value $B3fmt
+'Much worse off' = 1
+'Somewhat worse off' = 2
+'About the same' = 3
+'Somewhat better off' = 4
+'Much better off' = 5;
+value $ND2fmt
+'Much higher' = 1
+'Somewhat higher' = 2
+'About the same' = 3
+'Somewhat lower' = 4
+'Much lower' = 5;
+value $B7_bfmt
+'Poor' = 1
+'Only fair' = 2
+'Good' = 3
+'Excellent' = 4;
+value $GH1fmt
+'Own your home with a mortgage or loan' = 1
+'Own your home free and clear (without a mortgage or loan)' = 2
+'Pay rent' = 3
+'Neither own nor pay rent' = 4;
+value $race_fmt
+'White' = 1
+'Black' = 2
+'Hispanic' = 3
+'Asian' = 4
+'Other' = 5;
+value $edu_fmt
+'Less than a high school degree' = 1
+'High school degree or GED' = 2
+'Some college/technical or associates degree' = 3
+"Bachelor's degree or more" = 4;
+run;
+data Data_trans;
+set subsetData;
+B3_trans = put(B3, B3fmt.);
+ND2_trans = put(ND2, ND2fmt.);
+B7_b_trans = put(B7_b, B7_bfmt.);
+GH1_trans = put(GH1, GH1fmt.);
+race_trans = put(race_5cat, race_fmt.);
+educ_trans = put(educ_4cat, edu_fmt.);
+run;</code></pre>
+</div>
+<ol start="3" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<pre class="sas cell-code"><code>/* (c) */
+/* export the transformed data into Stata format */
+proc sql;
+create table outputData as
+select CaseID, weight_pop, B3_trans, ND2_trans, B7_b_trans, GH1_trans, race_trans, educ_trans
+from Data_trans;
+run;
+proc export data=outputData
+outfile="/home/u63651235/sasuser.v94/public2022.dta"
+dbms=stata replace;
+run;
+proc print data=outputData (obs=5);
+run;
+proc contents data=outputData;
+run;</code></pre>
+</div>
+<ol start="4" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>. doedit</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>. <span class="kw">use</span> <span class="st">"C:\Users\user\Desktop\public2022.dta"</span>, <span class="kw">clear</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>. <span class="fu">count</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  11,667</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>. <span class="kw">describe</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>Contains <span class="kw">data</span> from C:\Users\user\Desktop\public2022.dta</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a> Observations:        11,667                  </span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    Variables:             8                  </span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>----------------------------------------------------------------------------------------------------------------------------</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>Variable      Storage   Display    Value</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>    <span class="bn">name</span>         <span class="dv">type</span>    <span class="kw">format</span>    <span class="kw">label</span>      Variable <span class="kw">label</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>----------------------------------------------------------------------------------------------------------------------------</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>CaseID          <span class="kw">double</span>  %12.0g                </span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>weight_pop      <span class="kw">double</span>  %12.0g                </span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>B3_trans        str2    %2s                   </span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>ND2_trans       str2    %2s                   </span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>B7_b_trans      str2    %2s                   </span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>GH1_trans       str2    %2s                   </span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>race_trans      str2    %2s                   </span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>educ_trans      str2    %2s                   </span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>----------------------------------------------------------------------------------------------------------------------------</span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>Sorted <span class="kw">by</span>: </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>According to the above data, we can know that there are 11667 observations and 8 variables.</p>
+<ol start="5" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">gen</span> B3_binary = <span class="fu">cond</span>(<span class="fu">inlist</span>(B3_trans, <span class="st">"1"</span>, <span class="st">"2"</span>), 0, 1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="6" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">svyset</span> CaseID [pw = weight_pop]</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>Sampling weights: weight_pop</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>             <span class="kw">VCE</span>: <span class="kw">linearized</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>     Single unit: <span class="fu">missing</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        Strata 1: &lt;one&gt;</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a> Sampling unit 1: CaseID</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>           FPC 1: &lt;<span class="bn">zero</span>&gt;</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>. <span class="kw">encode</span> ND2_trans, <span class="kw">gen</span>(ND2_num)</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>. <span class="kw">encode</span> B7_b_trans, <span class="kw">gen</span>(B7_b_num)</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>. <span class="kw">encode</span> GH1_trans, <span class="kw">gen</span>(GH1_num)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>. <span class="kw">encode</span> race_trans, <span class="kw">gen</span>(race_num)</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>. <span class="kw">encode</span> educ_trans, <span class="kw">gen</span>(educ_num)</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>. <span class="kw">svy</span>: <span class="kw">logistic</span> B3_bin i.ND2_num i.B7_b_num i.GH1_num i.race_num i.educ_num</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>(running <span class="kw">logistic</span> <span class="kw">on</span> estimation <span class="kw">sample</span>)</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>Survey: Logistic regression</span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>Number <span class="kw">of</span> <span class="kw">strata</span> =      1                        Number <span class="kw">of</span> <span class="kw">obs</span>   =      11,667</span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>Number <span class="kw">of</span> PSUs   = 11,667                        Population <span class="kw">size</span> = 255,114,223</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>                                                 Design df       =      11,666</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">F</span>(17, 11650)    =       57.08</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>                                                 Prob &gt; <span class="fu">F</span>        =      0.0000</span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------------</span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a>             |             Linearized</span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a>   B3_binary | Odds <span class="kw">ratio</span>   <span class="fu">std</span>. err.      t    P&gt;|t|     [95% conf. interval]</span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a>-------------+----------------------------------------------------------------</span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a>     ND2_num |</span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a>          2  |   1.085264   .1004103     0.88   0.377     .9052586    1.301062</span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a>          3  |   1.068285   .0911387     0.77   0.439     .9037764    1.262738</span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a>          4  |   1.298803   .2656084     1.28   0.201     .8698664    1.939252</span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a>          5  |   1.268982    .211473     1.43   0.153     .9153563    1.759224</span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a>             |</span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a>    B7_b_num |</span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a>          2  |   3.023388   .1478851    22.62   0.000     2.746971    3.327619</span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a>          3  |   6.053997   .4822353    22.61   0.000     5.178836    7.077051</span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a>          4  |   11.91989   4.109229     7.19   0.000     6.064588    23.42845</span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a>             |</span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a>     GH1_num |</span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a>          2  |    .938628   .0530243    -1.12   0.262     .8402394    1.048538</span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a>          3  |   1.025434   .0602294     0.43   0.669     .9139174    1.150559</span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a>          4  |   1.422547    .140974     3.56   0.000     1.171397    1.727545</span>
+<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a>             |</span>
+<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a>    race_num |</span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a>          2  |   2.031276   .1647816     8.74   0.000     1.732648    2.381373</span>
+<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a>          3  |   1.183977   .0847211     2.36   0.018      1.02903    1.362255</span>
+<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a>          4  |   1.562447   .1970896     3.54   0.000     1.220175    2.000729</span>
+<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a>          5  |   .9875135    .163249    -0.08   0.939     .7141897     1.36544</span>
+<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a>             |</span>
+<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a>    educ_num |</span>
+<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a>          2  |   1.119783   .1303859     0.97   0.331     .8912739     1.40688</span>
+<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a>          3  |   1.178032   .1311927     1.47   0.141     .9470055    1.465419</span>
+<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a>          4  |   1.360402     .15108     2.77   0.006     1.094276    1.691249</span>
+<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a>             |</span>
+<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a>       <span class="dt">_cons</span> |   .5763645   .0791819    -4.01   0.000     .4402969    .7544819</span>
+<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------------</span>
+<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a>Note: <span class="dt">_cons</span> <span class="kw">estimates</span> baseline odds.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="7" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>. <span class="kw">export</span> delimited <span class="st">"C:\Users\user\Desktop\PS 4 Stats 506 output.csv"</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>file C:\Users\user\Desktop\PS 4 Stats 506 output.csv saved</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="8" type="a">
+<li></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(survey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: grid</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: Matrix</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'Matrix'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:tidyr':
+
+    expand, pack, unpack</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: survival</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'survey'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:graphics':
+
+    dotchart</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>public2022 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"PS 4 Stats 506 output.csv"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>design_use <span class="ot">&lt;-</span> <span class="fu">svydesign</span>(<span class="at">id =</span> <span class="sc">~</span> CaseID, <span class="at">weight =</span> <span class="sc">~</span> weight_pop, <span class="at">data =</span> public2022)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">svyglm</span>(B3_binary <span class="sc">~</span> <span class="fu">factor</span>(ND2_num) <span class="sc">+</span> <span class="fu">factor</span>(B7_b_num) <span class="sc">+</span> <span class="fu">factor</span>(GH1_num) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(race_num) <span class="sc">+</span> <span class="fu">factor</span>(educ_num), <span class="at">design =</span> design_use, <span class="at">family =</span> <span class="fu">quasibinomial</span>())</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+svyglm(formula = B3_binary ~ factor(ND2_num) + factor(B7_b_num) + 
+    factor(GH1_num) + factor(race_num) + factor(educ_num), design = design_use, 
+    family = quasibinomial())
+
+Survey design:
+svydesign(id = ~CaseID, weight = ~weight_pop, data = public2022)
+
+Coefficients:
+                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       -0.55101    0.13738  -4.011 6.09e-05 ***
+factor(ND2_num)2   0.08182    0.09252   0.884 0.376515    
+factor(ND2_num)3   0.06605    0.08531   0.774 0.438791    
+factor(ND2_num)4   0.26144    0.20450   1.278 0.201119    
+factor(ND2_num)5   0.23822    0.16665   1.429 0.152899    
+factor(B7_b_num)2  1.10638    0.04891  22.619  &lt; 2e-16 ***
+factor(B7_b_num)3  1.80072    0.07966  22.606  &lt; 2e-16 ***
+factor(B7_b_num)4  2.47821    0.34473   7.189 6.94e-13 ***
+factor(GH1_num)2  -0.06334    0.05649  -1.121 0.262241    
+factor(GH1_num)3   0.02512    0.05874   0.428 0.668936    
+factor(GH1_num)4   0.35245    0.09910   3.557 0.000377 ***
+factor(race_num)2  0.70866    0.08112   8.736  &lt; 2e-16 ***
+factor(race_num)3  0.16888    0.07156   2.360 0.018287 *  
+factor(race_num)4  0.44625    0.12614   3.538 0.000405 ***
+factor(race_num)5 -0.01257    0.16531  -0.076 0.939414    
+factor(educ_num)2  0.11314    0.11644   0.972 0.331254    
+factor(educ_num)3  0.16385    0.11137   1.471 0.141255    
+factor(educ_num)4  0.30778    0.11106   2.771 0.005590 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for quasibinomial family taken to be 1.002519)
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pseudo_R2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span> (fit<span class="sc">$</span>deviance <span class="sc">/</span> fit<span class="sc">$</span>null.deviance)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">psrsq</span>(fit, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">"Cox-Snell"</span>, <span class="st">"Nagelkerke"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1097895</code></pre>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
