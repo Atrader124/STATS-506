@@ -10,7 +10,6 @@ run;
 /* select needed variables */
 proc sql;
 create table subsetData as
-11
 select CaseID, weight_pop, B3, ND2, B7_b, GH1, race_5cat, educ_4cat
 from fullData;
 run;
@@ -46,7 +45,6 @@ value $race_fmt
 'Other' = 5;
 value $edu_fmt
 'Less than a high school degree' = 1
-12
 'High school degree or GED' = 2
 'Some college/technical or associates degree' = 3
 "Bachelor's degree or more" = 4;
