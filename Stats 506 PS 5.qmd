@@ -1,0 +1,194 @@
+---
+title: "Problem Set 5"
+author: "Yuanjie Xu"
+format: html
+editor: visual
+---
+
+GitHub Link: https://github.com/Atrader124/STATS-506
+
+Problem 1 - Plotting
+
+a.  
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# Load the data
+nnmaps <- read.csv("C:/Users/user/Desktop/chicago-nmmaps.csv")
+
+# Convert the month column to a factor with proper ordering
+nnmaps$month <- factor(nnmaps$month, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+
+# Calculate mean monthly temperature
+monthly_means <- nnmaps %>% group_by(month, season) %>% summarize(mean_temp = mean(temp, na.rm = TRUE))
+
+ggplot(monthly_means, aes(x = month, y = mean_temp, group = season, color = season)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Mean Monthly Temperature",
+       x = "Month",
+       y = "Mean Temperature (Celsius)",
+       color = "Season") +
+  theme_minimal()
+
+```
+
+b.  
+
+```{r}
+library(tidyr)
+
+new_nnmaps <- nnmaps %>%
+  group_by(month, season) %>%
+  summarize(avg_temp = mean(temp, na.rm = TRUE),
+            avg_O3 = mean(o3, na.rm = TRUE),
+            avg_PM10 = mean(pm10, na.rm = TRUE),
+            avg_dewpoint = mean(dewpoint, na.rm = TRUE))
+
+# Reshape the data for better plotting
+nnmaps_long <- new_nnmaps %>%
+  pivot_longer(cols = starts_with("avg"), names_to = "variable", values_to = "value")
+
+# Plot using ggplot2
+ggplot(nnmaps_long, aes(x = month, y = value, color = season, group = interaction(season, variable))) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Mean Monthly Variables",
+       x = "Month",
+       y = "Value") +
+  scale_color_manual(values = c("spring" = "green", "summer" = "red", "fall" = "orange", "winter" = "blue")) +
+  facet_wrap(~variable, scales = "free_y") +
+  theme_minimal()
+```
+
+"Which of the four variables seems to have the least seasonal trend?":
+
+According to the above four graphs, the average PM10 seems to have the least seasonal trend.
+
+Problem 2 - OOP Programming
+
+a.  
+
+```{r}
+setClass(
+  "poly",
+  representation(
+    coef = "numeric",
+    exp = "numeric"
+  )
+)
+
+# Define the constructor for the poly class
+setMethod(
+  f = "initialize",
+  signature = "poly",
+  definition = function(.Object, coef = numeric(), exp = numeric()) {
+    .Object@coef <- coef
+    .Object@exp <- exp
+    .Object
+  }
+)
+
+# Define the validator for the poly class
+setValidity(
+  "poly",
+  function(object) {
+    if (length(object@coef) != length(object@exp)) {
+      "Lengths of coefficients and exponents must be equal."
+    } else {
+      NULL
+    }
+  }
+)
+
+# Define the show method for the poly class
+setMethod(
+  f = "show",
+  signature = "poly",
+  definition = function(object) {
+    poly_str <- paste(object@coef, "*x^", object@exp)
+    poly_str <- gsub("*x^ 1", "*x", poly_str)
+    poly_str <- gsub("*x^ 0", "", poly_str)
+    cat(poly_str, sep = " + ", fill = TRUE)
+  }
+)
+
+# Define methods for addition and subtraction
+setMethod(
+  f = "+",
+  signature = c("poly", "poly"),
+  definition = function(e1, e2) {
+  unique_exps <- unique(c(e1@exp, e2@exp))
+  coef_sum <- sapply(unique_exps, function(p) {
+    sum(e1@coef[e1@exp == p], na.rm = TRUE) + sum(e2@coef[e2@exp == p], na.rm = TRUE)
+  })
+  new("poly", coef = coef_sum, exp = unique_exps)
+})
+
+setMethod(
+  f = "-",
+  signature = c("poly", "poly"),
+  definition = function(e1, e2) {
+  unique_exps <- unique(c(e1@exp, e2@exp))
+  coef_diff <- sapply(unique_exps, function(p) {
+    sum(e1@coef[e1@exp == p], na.rm = TRUE) - sum(e2@coef[e2@exp == p], na.rm = TRUE)
+  })
+  new("poly", coef = coef_diff, exp = unique_exps)
+})
+```
+
+b.  
+
+```{r}
+# test the example
+p1 <- new("poly", coef = c(3, 2), exp = c(2, 1))
+p2 <- new("poly", coef = c(7, -2, -1, 17), exp = c(3, 2, 1, 0))
+
+p1
+p2
+p1 + p2
+p1 - p2
+```
+
+Problem 3 - data.table
+
+a.  
+
+```{r}
+library(nycflights13)
+library(data.table)
+
+flights_dt <- as.data.table(nycflights13::flights)
+
+departure_delay_summary <- flights_dt[, .(Mean_Dep_Delay = mean(dep_delay, na.rm = TRUE), Median_Dep_Delay = median(dep_delay, na.rm = TRUE), Flight_Count = .N), by = .(origin)]
+
+# Generate a table reporting mean and median arrival delay per airport
+arrival_delay_summary <- flights_dt[, .(Mean_Arr_Delay = mean(arr_delay, na.rm = TRUE), Median_Arr_Delay = median(arr_delay, na.rm = TRUE), Flight_Count = .N), by = .(dest)][Flight_Count >= 10]  # Exclude destinations with under 10 flights
+
+# Order tables in descending mean delay
+departure_delay_summary <- departure_delay_summary[order(-Mean_Dep_Delay)]
+arrival_delay_summary <- arrival_delay_summary[order(-Mean_Arr_Delay)]
+
+# Rename airport codes with airport names
+departure_delay_summary[, origin]
+arrival_delay_summary[, dest]
+
+# Print the tables
+print(departure_delay_summary)
+print(arrival_delay_summary)
+```
+
+b.  
+
+```{r}
+# Calculate average speed (in MPH) for each aircraft model
+flights_dt[, air_speed := distance / air_time * 60, by = .(tailnum)]
+
+# Find the model with the fastest average speed
+fastest_model <- flights_dt[, .(Mean_Speed = mean(air_speed, na.rm = TRUE), Flight_Count = .N), by = .(tailnum)][order(-Mean_Speed)][1]
+
+# Print the table
+print(fastest_model)
+```
