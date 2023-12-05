@@ -1,0 +1,125 @@
+---
+title: "Stats 506 PS 6"
+author: "Yuanjie Xu"
+format:
+  html:
+    embed-resources: true
+editor: visual
+---
+
+## Stratified Bootstrapping
+
+Github link: https://github.com/Atrader124/STATS-506
+
+```{r}
+library(nycflights13)
+library(dplyr)
+
+set.seed(123) # for reproducibility
+
+# Function to perform stratified sampling
+stratified_sample <- function(df, strata, size) {
+  df %>% 
+    group_by(!!sym(strata)) %>% 
+    sample_n(size, replace = TRUE) %>% 
+    ungroup()
+}
+
+# Function to calculate the average air_time
+bootstrap_mean <- function(df, strata, size) {
+  sampled_df <- stratified_sample(df, strata, size)
+  mean(sampled_df$air_time, na.rm = TRUE)
+}
+```
+
+Without Parallel Processing
+
+```{r}
+start_time <- Sys.time()
+# Bootstrapping
+n_bootstrap <- 1000
+results <- vector("list", n_bootstrap)
+for (i in 1:n_bootstrap) {
+  results[[i]] <- flights %>% 
+    group_by(origin) %>%
+    summarise(boot_mean = bootstrap_mean(cur_data(), "dest", n()))
+}
+
+end_time <- Sys.time()
+
+# Calculating confidence intervals
+results_df <- bind_rows(results)
+ci_df <- results_df %>% 
+  group_by(origin) %>% 
+  summarise(mean = mean(boot_mean), 
+            lci = quantile(boot_mean, 0.025), 
+            uci = quantile(boot_mean, 0.975))
+
+print(ci_df)
+print(end_time - start_time)
+```
+
+With Parallel Processing (Using parallel package)
+
+```{r}
+library(parallel)
+
+# Parallel bootstrapping
+cl <- makeCluster(detectCores() - 1) # leaving one core free
+clusterExport(cl, varlist = c("flights", "bootstrap_mean", "stratified_sample"))
+clusterEvalQ(cl, library(dplyr))
+
+start_time <- Sys.time()
+results_parallel <- parLapply(cl, 1:n_bootstrap, function(i) {
+  flights %>% 
+    group_by(origin) %>%
+    summarise(boot_mean = bootstrap_mean(cur_data(), "dest", n()))
+})
+
+stopCluster(cl)
+end_time <- Sys.time()
+
+# Processing results
+results_df <- bind_rows(results_parallel)
+ci_df <- results_df %>% 
+  group_by(origin) %>% 
+  summarise(mean = mean(boot_mean), 
+            lci = quantile(boot_mean, 0.025), 
+            uci = quantile(boot_mean, 0.975))
+
+print(ci_df)
+print(end_time - start_time)
+```
+
+With Parallel Processing (Using future package)
+
+```{r}
+library(future)
+library(future.apply)
+future.seed = NULL
+
+# Setting up future for parallel processing
+plan(multisession)
+
+# Parallel bootstrapping
+start_time <- Sys.time()
+results_future <- future_lapply(1:n_bootstrap, function(i) {
+  flights %>% 
+    group_by(origin) %>%
+    summarise(boot_mean = bootstrap_mean(cur_data(), "dest", n()))
+})
+end_time <- Sys.time()
+
+# Processing results
+results_df <- bind_rows(results_future)
+ci_df <- results_df %>% 
+  group_by(origin) %>% 
+  summarise(mean = mean(boot_mean), 
+            lci = quantile(boot_mean, 0.025), 
+            uci = quantile(boot_mean, 0.975))
+
+print(ci_df)
+print(end_time - start_time)
+```
+
+As we can see from the results, the time difference of non-parallel vision is 4.110785 mins, while the visions with parallel processing only need 1.130946 mins (using parallel package) and 1.374239 mins (using future package). The parallel version is thrice as fast as the non-parallel version.
